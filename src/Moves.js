@@ -1,33 +1,47 @@
 import {useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
-import {useLocation} from "react-router";
+import {useHistory, useLocation} from "react-router";
 import axios from 'axios'
 import Bread from "./BreadCrumbs"
+import {Typography} from "@material-ui/core";
 
 const Move = () => {
+    let history = useHistory();
     let {name} = useParams();
     let data = useLocation();
-    const url = data.state.url;
-    const pokemonName = data.state.name;
-    const [pokemon, setPokemon] = useState([]);
+    let url = '';
+    let pokemonName = '';
+    if (data.state === undefined) {
+        history.push("/not-found")
+    } else {
+        url = data.state.url;
+        pokemonName = data.state.name;
+    }
+
+    const [effect, setEffect] = useState([]);
+    const [power, setPower] = useState([]);
+    const [accuracyMove, setAccuracy] = useState([]);
     useEffect(() => {
         axios.get(url)
             .then((response) => {
-                setPokemon(response.data);
-
-                response.data.effect_entries.forEach(data => setPokemon(data));
+                setPower(response.data.power)
+                setAccuracy(response.data.accuracy);
+                response.data.effect_entries.forEach(data => setEffect(data));
             })
-            .catch((err) => console.log(err))
+            .catch((err) => history.push("/not-found"))
     }, []);
 
     return (
         <div>
-            <h1>{name}</h1>
-
-            <b>effect_entries: </b>{pokemon.effect}
-            <br/>
-            <b>short_effect:</b> {pokemon.short_effect}
             <Bread pokemon={pokemonName} movement={name}/>
+            <Typography component="h1" className={"center"}>{name}</Typography>
+            <b>Effect Entries: </b>{effect.effect}
+            <br/>
+            <b>Short Effect:</b> {effect.short_effect}
+            <br/>
+            <b>Power:</b> {power}
+            <br/>
+            <b>Accuracy:</b> {accuracyMove}
         </div>);
 };
 

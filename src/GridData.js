@@ -17,7 +17,9 @@ const GridData = (props) => {
                                 pathname: '/' + link + '/' + pokemon.name,
                                 state: {url: pokemon.url, name: name}
                             }}
-                            >{pokemon.name}</Link>
+                            ><img className={'pokeball'}
+                                src={'https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Pokebola-pokeball-png-0.png/601px-Pokebola-pokeball-png-0.png'}
+                                alt={'pokeball'}/> {pokemon.name}</Link>
                         </div>
                     </Grid>
                 ))}

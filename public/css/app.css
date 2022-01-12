@@ -2,17 +2,18 @@
 
     height: 24px;
     margin: 10px;
-    width: 100px;
-    text-align: center;
+    width: 120px;
+    text-align: left;
 }
 
 .pokemon a {
-    color: green !important;
+    color: black !important;
+    text-decoration: none;
 }
 
-.pokemon img {
-    width: 75px;
-    height: 75px;
+.pokeball {
+    width: 12px;
+    height: auto;
 }
 
 .button {

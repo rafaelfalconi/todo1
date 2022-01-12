@@ -28,6 +28,7 @@ const Home = () => {
 
     return (
         <div>
+            <Bread/>
             <Typography component="h1">POKEDEX</Typography>
             <GridData data={pokemons} link={'pokemon'}/>
             <div>
@@ -35,7 +36,7 @@ const Home = () => {
                     Load More
                 </Button>
             </div>
-            <Bread/>
+
 
         </div>
     );

@@ -3,6 +3,7 @@ import Pokemon from "./Pokemon";
 import TermsAndConditions from "./TermsAndConditions";
 import Home from "./Home";
 import Move from "./Moves";
+import NotFound from "./NotFound";
 
 
 const Router = () => {
@@ -10,17 +11,20 @@ const Router = () => {
     return (
         <BrowserRouter>
             <Switch>
-                <Route path="/pokemon/:name">
+                <Route exact path="/pokemon/:name">
                     <Pokemon/>
                 </Route>
-                <Route path="/move/:name">
+                <Route exact path="/move/:name">
                     <Move/>
                 </Route>
-                <Route path="/terms-conditions">
+                <Route exact path="/terms-conditions">
                     <TermsAndConditions/>
                 </Route>
-                <Route path="/">
+                <Route exact path="/">
                     <Home/>
+                </Route>
+                <Route>
+                    <NotFound/>
                 </Route>
             </Switch>
             <footer>
